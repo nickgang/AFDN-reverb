@@ -31,3 +31,10 @@
 # Annoying Apple Stuff
 *.DS_Store
 *~
+
+# Audio Files
+*.wav
+*.aif
+*.aiff
+*.mp3
+*.m4a
