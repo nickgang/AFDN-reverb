@@ -27,3 +27,7 @@
 *.exe
 *.out
 *.app
+
+# Annoying Apple Stuff
+*.DS_Store
+*~
