@@ -7,8 +7,8 @@ clc
 close all
 
 %% Building a Mixing Matrix -- Hadamard
-m = 12; % 12 delay lines
+m = 4; % 12 delay lines
 H = hadamard(m);
-H = H/sqrt(12); % Normalize matrix so eigs will have mag of 1
+H = H/sqrt(m); % Normalize matrix so eigs will have mag of 1
 %H = H*H'; % Verify orthonormal by looking at eigenvalues
 abs(eigs(H))
