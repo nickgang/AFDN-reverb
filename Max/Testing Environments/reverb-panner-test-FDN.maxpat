@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 34.0, 78.0, 1372.0, 783.0 ],
+		"rect" : [ 34.0, 79.0, 1372.0, 783.0 ],
 		"bgcolor" : [ 0.9, 0.9, 0.9, 1.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
@@ -4543,7 +4543,7 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 776.0, 264.0, 50.0, 21.0 ],
 									"style" : "",
-									"text" : "0"
+									"text" : "1"
 								}
 
 							}
@@ -11245,29 +11245,29 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-7::obj-26::obj-56" : [ "live.button[1]", "live.button[1]", 0 ],
-			"obj-12::obj-10" : [ "live.numbox[3]", "live.numbox[1]", 0 ],
-			"obj-101::obj-35" : [ "live.numbox[19]", "live.numbox", 0 ],
-			"obj-7::obj-5::obj-12" : [ "live.button", "live.button", 0 ],
-			"obj-12::obj-15" : [ "live.numbox[2]", "live.numbox[1]", 0 ],
-			"obj-7::obj-26::obj-59" : [ "live.numbox[1]", "live.numbox[1]", 0 ],
-			"obj-101::obj-606" : [ "live.text[10]", "live.text", 0 ],
-			"obj-7::obj-43::obj-8" : [ "live.dial", "freq", 0 ],
-			"obj-7::obj-2" : [ "live.gain~", " ", 0 ],
-			"obj-12::obj-5" : [ "live.numbox[4]", "live.numbox", 0 ],
-			"obj-7::obj-12::obj-4" : [ "live.numbox", "live.numbox", 0 ],
-			"obj-7::obj-46::obj-36" : [ "select folder[1]", "select folder", 0 ],
-			"obj-101::obj-607" : [ "live.button[8]", "live.button", 0 ],
-			"obj-7::obj-23" : [ "live.toggle", "live.toggle", 0 ],
-			"obj-101::obj-50" : [ "live.numbox[17]", "live.numbox", 0 ],
-			"obj-7::obj-26::obj-58" : [ "live.toggle[1]", "live.toggle[1]", 0 ],
-			"obj-7::obj-1" : [ "live.menu", "live.menu", 0 ],
 			"obj-27" : [ "live.menu[7]", "live.menu", 0 ],
+			"obj-7::obj-2" : [ "live.gain~", " ", 0 ],
+			"obj-7::obj-43::obj-8" : [ "live.dial", "freq", 0 ],
+			"obj-7::obj-12::obj-4" : [ "live.numbox", "live.numbox", 0 ],
+			"obj-7::obj-23" : [ "live.toggle", "live.toggle", 0 ],
+			"obj-101::obj-35" : [ "live.numbox[19]", "live.numbox", 0 ],
+			"obj-7::obj-26::obj-56" : [ "live.button[1]", "live.button[1]", 0 ],
+			"obj-7::obj-1" : [ "live.menu", "live.menu", 0 ],
+			"obj-12::obj-10" : [ "live.numbox[3]", "live.numbox[1]", 0 ],
+			"obj-101::obj-606" : [ "live.text[10]", "live.text", 0 ],
 			"obj-12::obj-1" : [ "live.menu[1]", "live.menu", 0 ],
-			"obj-7::obj-182" : [ "live.text[1]", "live.text[1]", 0 ],
+			"obj-101::obj-55" : [ "live.text[9]", "live.text", 0 ],
+			"obj-7::obj-26::obj-58" : [ "live.toggle[1]", "live.toggle[1]", 0 ],
+			"obj-7::obj-26::obj-59" : [ "live.numbox[1]", "live.numbox[1]", 0 ],
+			"obj-12::obj-15" : [ "live.numbox[2]", "live.numbox[1]", 0 ],
+			"obj-101::obj-50" : [ "live.numbox[17]", "live.numbox", 0 ],
+			"obj-7::obj-46::obj-36" : [ "select folder[1]", "select folder", 0 ],
 			"obj-101::obj-21" : [ "live.numbox[18]", "live.numbox", 0 ],
+			"obj-7::obj-5::obj-12" : [ "live.button", "live.button", 0 ],
+			"obj-12::obj-5" : [ "live.numbox[4]", "live.numbox", 0 ],
+			"obj-7::obj-182" : [ "live.text[1]", "live.text[1]", 0 ],
 			"obj-7::obj-46::obj-6" : [ "live.text[3]", "live.text[1]", 0 ],
-			"obj-101::obj-55" : [ "live.text[9]", "live.text", 0 ]
+			"obj-101::obj-607" : [ "live.button[8]", "live.button", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
