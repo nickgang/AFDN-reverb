@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 88.0, 79.0, 907.0, 787.0 ],
+		"rect" : [ 88.0, 79.0, 630.0, 746.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,50 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-50",
+					"maxclass" : "button",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 359.583313, 382.0, 24.0, 24.0 ],
+					"style" : ""
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 359.583313, 413.0, 41.0, 22.0 ],
+					"style" : "",
+					"text" : "click~"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-101",
+					"lockeddragscroll" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "spat.monitor.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"offset" : [ 0.0, 0.0 ],
+					"patching_rect" : [ 627.0, 172.0, 410.0, 140.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-53",
 					"maxclass" : "newobj",
@@ -81,7 +125,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 794.0, 495.0, 84.0, 22.0 ],
+					"patching_rect" : [ 529.0, 460.0, 84.0, 22.0 ],
 					"style" : "",
 					"text" : "FDN_channel"
 				}
@@ -294,7 +338,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 125.333313, 231.0, 50.0, 22.0 ],
 					"style" : "",
-					"text" : "2800."
+					"text" : "7200."
 				}
 
 			}
@@ -1222,6 +1266,15 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-51", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1504,6 +1557,24 @@
 					"destination" : [ "obj-22", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
+					"source" : [ "obj-49", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-50", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-22", 1 ],
+					"disabled" : 0,
+					"hidden" : 0,
 					"source" : [ "obj-51", 0 ]
 				}
 
@@ -1594,6 +1665,15 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-101::obj-606" : [ "live.text[2]", "live.text", 0 ],
+			"obj-101::obj-607" : [ "live.button[1]", "live.button", 0 ],
+			"obj-101::obj-50" : [ "live.numbox[6]", "live.numbox", 0 ],
+			"obj-101::obj-21" : [ "live.numbox[4]", "live.numbox", 0 ],
+			"obj-101::obj-55" : [ "live.text[3]", "live.text", 0 ],
+			"obj-101::obj-35" : [ "live.numbox[5]", "live.numbox", 0 ]
+		}
+,
 		"dependency_cache" : [ 			{
 				"name" : "ZFDN_channel.maxpat",
 				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
@@ -1655,6 +1735,18 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "spat.monitor.maxpat",
+				"bootpath" : "~/Documents/Max 7/Packages/ircam-spat/patchers",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "thru.maxpat",
+				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "faustgen~.mxo",
 				"type" : "iLaX"
 			}
@@ -1688,6 +1780,18 @@
 			}
 , 			{
 				"name" : "spat.fixnan~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat.spectroscope~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat.cpu.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat.hostinfos.mxo",
 				"type" : "iLaX"
 			}
  ],
