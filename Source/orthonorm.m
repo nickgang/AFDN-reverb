@@ -11,7 +11,7 @@
 
 kNumDelays=12;
 A=zeros(kNumDelays,kNumDelays);
-dcy=2;
+dcy=1;
 for ind1=1:kNumDelays
    for ind2=ind1+1:kNumDelays
       A(ind1,ind2)=(-1+2*rand(1))*(ind2-ind1)^(-dcy);
