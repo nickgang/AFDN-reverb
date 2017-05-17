@@ -5450,9 +5450,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 505.0, 63.0, 47.0, 22.0 ],
+					"patching_rect" : [ 505.0, 63.0, 49.0, 22.0 ],
 					"style" : "",
-					"text" : "r dlens"
+					"text" : "r ldlens"
 				}
 
 			}

@@ -44,7 +44,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 346.25, 458.25, 70.0, 22.0 ],
-					"presentation_rect" : [ 346.25, 427.25, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "gen~ 1pole"
 				}
@@ -273,7 +272,6 @@
 					}
 ,
 					"patching_rect" : [ 364.0, 426.25, 59.350006, 22.0 ],
-					"presentation_rect" : [ 364.0, 395.25, 0.0, 0.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -295,7 +293,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 240.25, 458.25, 70.0, 22.0 ],
-					"presentation_rect" : [ 233.0, 425.25, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "gen~ 1pole"
 				}
@@ -524,7 +521,6 @@
 					}
 ,
 					"patching_rect" : [ 258.0, 426.25, 59.350006, 22.0 ],
-					"presentation_rect" : [ 254.0, 393.25, 0.0, 0.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -546,7 +542,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 136.0, 458.25, 70.0, 22.0 ],
-					"presentation_rect" : [ 144.75, 424.25, 0.0, 0.0 ],
 					"style" : "",
 					"text" : "gen~ 1pole"
 				}
@@ -775,7 +770,6 @@
 					}
 ,
 					"patching_rect" : [ 157.0, 426.25, 59.350006, 22.0 ],
-					"presentation_rect" : [ 169.649994, 392.25, 0.0, 0.0 ],
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1279,9 +1273,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 485.333344, 63.5, 47.0, 22.0 ],
+					"patching_rect" : [ 485.333344, 63.5, 53.0, 22.0 ],
 					"style" : "",
-					"text" : "r dlens"
+					"text" : "r edlens"
 				}
 
 			}
@@ -1341,7 +1335,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-7",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1354,11 +1348,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-6",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 31.75, 42.5, 51.0, 51.0 ],
 					"style" : ""
 				}
@@ -1992,59 +1986,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "designShelf.maxpat",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "quadMix.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "hadMix4.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "samp2ms.maxpat",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "1pole.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "o.expr.codebox.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "o.pak.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "o.route.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "o.display.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "o.pack.mxo",
-				"type" : "iLaX"
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
