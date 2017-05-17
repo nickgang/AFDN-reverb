@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 96.0, 79.0, 1318.0, 768.0 ],
+		"rect" : [ 67.0, 401.0, 1318.0, 768.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,45 @@
 		"style" : "",
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-41",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1045.5, 255.000031, 240.0, 22.0 ],
+					"style" : "",
+					"text" : "837 1027 1211 1471 1697 1823 1919 2063"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 376.5, 178.0, 473.0, 22.0 ],
+					"style" : "",
+					"text" : "837 953 1027 1117 1211 1361 1471 1559 1697 1741 1823 1879 1919 2003 2063 2153"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 362.083313, 593.0, 97.0, 22.0 ],
+					"style" : "",
+					"text" : "FDN_channel16"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"format" : 6,
 					"id" : "obj-57",
@@ -122,19 +161,6 @@
 					"patching_rect" : [ 362.083313, 511.0, 68.0, 22.0 ],
 					"style" : "",
 					"text" : "FDN_early"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-45",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 362.083313, 589.0, 91.0, 22.0 ],
-					"style" : "",
-					"text" : "FDN_channel8"
 				}
 
 			}
@@ -1043,19 +1069,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-41",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 344.5, 239.000015, 240.0, 22.0 ],
-					"style" : "",
-					"text" : "837 1027 1211 1471 1697 1823 1919 2063"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-11",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -1209,21 +1222,39 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 1 ],
+					"destination" : [ "obj-22", 2 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"midpoints" : [ 371.583313, 561.0, 348.0, 561.0, 348.0, 639.0, 380.083313, 639.0 ],
-					"order" : 0,
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-17", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"order" : 1,
 					"source" : [ "obj-19", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-45", 0 ],
+					"destination" : [ "obj-22", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
-					"order" : 1,
+					"midpoints" : [ 371.583313, 561.0, 348.0, 561.0, 348.0, 639.0, 380.083313, 639.0 ],
+					"order" : 0,
 					"source" : [ "obj-19", 0 ]
 				}
 
@@ -1458,15 +1489,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-41", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-24", 1 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1496,15 +1518,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 2 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"source" : [ "obj-45", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-13", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1518,6 +1531,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-52", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"order" : 2,
+					"source" : [ "obj-8", 0 ]
 				}
 
 			}
@@ -1575,17 +1598,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-41", 0 ],
-					"disabled" : 0,
-					"hidden" : 0,
-					"midpoints" : [ 425.583313, 234.0, 354.0, 234.0 ],
-					"order" : 2,
-					"source" : [ "obj-8", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-52", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
@@ -1597,12 +1609,12 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-101::obj-50" : [ "live.numbox[6]", "live.numbox", 0 ],
 			"obj-101::obj-21" : [ "live.numbox[4]", "live.numbox", 0 ],
 			"obj-101::obj-35" : [ "live.numbox[5]", "live.numbox", 0 ],
-			"obj-101::obj-55" : [ "live.text[3]", "live.text", 0 ],
 			"obj-101::obj-606" : [ "live.text[2]", "live.text", 0 ],
 			"obj-101::obj-607" : [ "live.button[1]", "live.button", 0 ],
-			"obj-101::obj-50" : [ "live.numbox[6]", "live.numbox", 0 ]
+			"obj-101::obj-55" : [ "live.text[3]", "live.text", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
@@ -1618,43 +1630,13 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "FDN_channel8.maxpat",
+				"name" : "FDN_early.maxpat",
 				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "octoMix.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "samp2ms.maxpat",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "hadMix8.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "designShelf.maxpat",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "1pole.gendsp",
-				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "FDN_early.maxpat",
 				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
 				"type" : "JSON",
 				"implicit" : 1
@@ -1672,6 +1654,36 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "samp2ms.maxpat",
+				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "1pole.gendsp",
+				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
+				"type" : "gDSP",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "FDN_channel16.maxpat",
+				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "16Mix.gendsp",
+				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
+				"type" : "gDSP",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "hadMix16.gendsp",
+				"bootpath" : "~/Documents/Stanford/Music222/AFDN-reverb/Max/lib",
+				"type" : "gDSP",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "spat.cpu.mxo",
 				"type" : "iLaX"
 			}
@@ -1680,15 +1692,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "o.pack.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "o.expr.codebox.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "o.display.mxo",
+				"name" : "o.pak.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -1696,11 +1704,15 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "spat.fixnan~.mxo",
+				"name" : "o.display.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "o.pak.mxo",
+				"name" : "o.pack.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "spat.fixnan~.mxo",
 				"type" : "iLaX"
 			}
  ],
