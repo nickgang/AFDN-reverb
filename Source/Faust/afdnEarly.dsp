@@ -3,9 +3,9 @@
 
 import("stdfaust.lib");
 
-//--------------------------------`afdnrev0`---------------------------------
-// Pure Feedback Delay Network Reverberator (generalized for easy scaling).
-// `afdnrev0` is a standard Faust function.
+//--------------------------------`afdnEarly0`---------------------------------
+// Early reflection section of Ambisonics FDN reverb, build on top of
+// standard Faust function `afdnrev0`.
 //
 // #### Usage
 //
@@ -31,9 +31,9 @@ import("stdfaust.lib");
 // <https://ccrma.stanford.edu/~jos/pasp/FDN_Reverberation.html>
 // <https://github.com/nickgang/AFDN-reverb>
 //------------------------------------------------------------
-afdnrev0(MAXDELAY, delays, BBSO, freqs, durs, loopgainmax, nonl)
-  = (si.bus(2*N) :> si.bus(N) : delaylines(N)) ~
-    (delayfilters(N,freqs,durs) : feedbackmatrix(N))
+afdnEarly0(MAXDELAY, delays, BBSO, freqs, durs, loopgainmax, nonl)
+  = (si.bus(N) : delaylines(N)) : (delayfilters(N,freqs,durs) :
+    feedbackmatrix(N))
 with {
   N = ba.count(delays);
   NB = ba.count(durs);
