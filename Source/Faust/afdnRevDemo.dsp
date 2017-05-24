@@ -4,7 +4,7 @@ declare author "JOS, Revised by RM";
 declare description "A feedback delay network reverb.";
 
 import("stdfaust.lib");
-import("afdnRev.dsp");
+import("AFDN.lib");
 
 //-------------------------`afdnrev0_demo`---------------------------
 // A reverb application using `afdnrev0`.
@@ -25,8 +25,11 @@ import("afdnRev.dsp");
 // * `bbso` = Butterworth band-split order / order of lowpass/highpass bandsplit
 //	used at each crossover freq / odd positive integer
 //------------------------------------------------------------
-afdnrev0_demo(N,NB,BBSO) = afdnrev0(MAXDELAY,delays,BBSO,freqs,durs,loopgainmax,nonl)
-	  :> *(gain)
+afdnrev0_demo(N,NB,BBSO) = si.bus(N) :
+		afdnEarly0(MAXDELAY,delays,BBSO,freqs,durs,loopgainmax,nonl) :
+		afdnRotate(N,2*ma.PI) :
+		( _ : afdnrev0(MAXDELAY,delays,BBSO,freqs,durs,loopgainmax,nonl):> *(gain)) ,
+	  (si.bus(N-1))
 with{
 	MAXDELAY = 8192; // sync w delays and prime_power_delays above
 	defdurs = (8.4,6.5,5.0,3.8,2.7); // NB default durations (sec)
