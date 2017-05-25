@@ -24,8 +24,8 @@ import("AFDN.lib");
 // * `NB`: Number of frequency bands / Number of (nearly) independent T60 controls
 //	/ Integer 3 or greater
 //------------------------------------------------------------
-afdnrev0_demo(O,N,M,NB) = par(i,A,si.bus(M)
-				: afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
+afdnrev0_demo(O,N,M,NB) = si.bus(M) <: par(i,A,
+				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
 		: afdnRotate(O,ma.PI/2) :
 		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
 	  (si.bus(A-1))
