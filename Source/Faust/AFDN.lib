@@ -97,7 +97,7 @@ with {
 //------------------------------------------------------------
 afdnEarly0(MAXDELAY, delays, BBSO, freqs, durs, loopgainmax, nonl)
   = (si.bus(N) : delaylines(N)) : (delayfilters(N,freqs,durs) :
-    feedforwardmatrix(N))
+    feedforwardmatrix(N)) :> *(1/N)
 with {
   N = ba.count(delays);
   NB = ba.count(durs);
@@ -145,16 +145,16 @@ with {
 //
 // Where:
 //
-// * `N`: 2, 4, 8, ...  (power of 2)
+// * `O`: 0, 1, 2, ...  (Ambisonics Order)
 // * `angle`: rotation angle (0 to 2pi, radians)
 //
 // #### Reference
 //
 // <https://github.com/nickgang/AFDN-reverb>
 //------------------------------------------------------------
-afdnRotate(N,angle) = si.bus(N) <: si.bus(2*N) : rotL(N),rotR(N) :> si.bus(N)
+afdnRotate(O,angle) = si.bus(A) <: si.bus(2*A) : rotL(A),rotR(A) :> si.bus(A)
 with {
-  order = ma.log2(N)-1; // Get order from number of channels
-  rotL(N) = par(i,order+1,si.bus((2*i)+1):ho.rotate(i,angle)); // This will be clockwise rotation
-  rotR(N) = par(i,order+1,si.bus((2*i)+1):ho.rotate(i,-angle)); // This will be counterclockwise rotation
+  A = (O+1)^2; // Get order from number of channels
+  rotL(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,angle)); // This will be clockwise rotation
+  rotR(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,-angle)); // This will be counterclockwise rotation
 };
