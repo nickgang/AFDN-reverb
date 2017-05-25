@@ -24,7 +24,7 @@ import("AFDN.lib");
 // * `NB`: Number of frequency bands / Number of (nearly) independent T60 controls
 //	/ Integer 3 or greater
 //------------------------------------------------------------
-afdnrev0_demo(O,N,M,NB) = si.bus(M) <: par(i,A,
+afdnrev0_demo(O,N,M,NB) = par(i,A,
 				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
 		: afdnRotate(O,ma.PI/2) :
 		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
@@ -36,7 +36,7 @@ with{
 	deffreqs = (500,1000,2000,4000); // NB-1 default crossover frequencies (Hz)
 	deflens = (56.3,63.0); // 2 default min and max path lengths (same for early and late for now)
 
-	fdn_group(x)  = vgroup("LATE FIELD FDN, ORDER 16
+	fdn_group(x)  = vgroup("Ambisonics FDN, ORDER 16
 	[tooltip: See Faust's reverbs.lib for documentation and references]", x);
 
 	freq_group(x)  = fdn_group(vgroup("[1] Band Crossover Frequencies", x));
@@ -81,4 +81,4 @@ with{
 };
 
 
-process = afdnrev0_demo(2,16,8,5);
+process = afdnrev0_demo(4,16,8,5);

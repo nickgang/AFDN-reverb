@@ -69,7 +69,8 @@ with {
 
 //--------------------------------`afdnEarly0`---------------------------------
 // Early reflection section of Ambisonics FDN reverb, built on top of
-// standard Faust function `afdnrev0`.
+// standard Faust function `afdnrev0`. Since we only want to add one set of N
+// reflections to each channel, the feedback loop is eliminated. 
 //
 // #### Usage
 //
@@ -96,7 +97,7 @@ with {
 // <https://github.com/nickgang/AFDN-reverb>
 //------------------------------------------------------------
 afdnEarly0(MAXDELAY, delays, BBSO, freqs, durs, loopgainmax, nonl)
-  = (si.bus(N) : delaylines(N)) : (delayfilters(N,freqs,durs) :
+  = _ <: (si.bus(N) : delaylines(N)) : (delayfilters(N,freqs,durs) :
     feedforwardmatrix(N)) :> *(1/N)
 with {
   N = ba.count(delays);
