@@ -70,7 +70,7 @@ with {
 //--------------------------------`afdnEarly0`---------------------------------
 // Early reflection section of Ambisonics FDN reverb, built on top of
 // standard Faust function `afdnrev0`. Since we only want to add one set of N
-// reflections to each channel, the feedback loop is eliminated. 
+// reflections to each channel, the feedback loop is eliminated.
 //
 // #### Usage
 //
@@ -135,6 +135,7 @@ with {
 //--------------------------------`afdnRotate`---------------------------------
 // Rotation of early reflections for Ambisonics FDN reverb
 // For now, built using rotate method from HOA lib
+// TODO: Replace hoa.lib function with one that supports ACN ordering
 //
 // #### Usage
 //
@@ -153,9 +154,27 @@ with {
 //
 // <https://github.com/nickgang/AFDN-reverb>
 //------------------------------------------------------------
-afdnRotate(O,angle) = si.bus(A) <: si.bus(2*A) : rotL(A),rotR(A) :> si.bus(A)
+afdnRotate(O,angle) = si.bus(A) <: si.bus(2*A) : rot(angle),rot(-angle) :> si.bus(A)
 with {
   A = (O+1)^2; // Get order from number of channels
-  rotL(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,angle)); // This will be clockwise rotation
-  rotR(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,-angle)); // This will be counterclockwise rotation
+  rot(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,angle)); // This will be clockwise rotation
 };
+
+//--------------------------------`hoaRotate`---------------------------------
+// Placeholder name for afdnRotate function while we replace the hoa.lib function
+// with our own
+hoaRotate(O,theta) = si.bus(A) <: si.bus(2*A) : rot(theta),rot(-theta) :> si.bus(A)
+with{
+  A = (O+1)^2; // Get order from number of channels
+  rot(theta) = si.bus(A)<:(*1,rotateFirst(theta),
+                rotateOrder(O,theta))); // Three rotations in parallel
+}
+
+//--------------------------------`rotateFirst`---------------------------------
+// First order rotation matrix, for X,Y,Z directions
+rotateFirst(theta) = si.bus(3)<:par(i,3,applyRotate(theta))
+with {
+  applyRotate(theta) = si.bus(3)<:(_*cos(theta),_*0,_*-sin(theta):>_),
+                                  (_*0,_,_*0:>_),
+                                  (_*sin(theta),_*0:>_)
+}
