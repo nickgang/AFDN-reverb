@@ -26,7 +26,7 @@ import("AFDN.lib");
 //------------------------------------------------------------
 afdnrev0_demo(O,N,M,NB) = par(i,A,
 				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
-		: hoaRotate(O,ma.PI/2) :
+		: hoaRotate(O,theta) :
 		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
 	  (si.bus(A-1))
 with{
@@ -39,6 +39,7 @@ with{
 	fdn_group(x)  = vgroup("Ambisonics FDN, ORDER 16
 	[tooltip: See Faust's reverbs.lib for documentation and references]", x);
 
+	theta_group(x) = fdn_group(hgroup("[1] Reflection Width",x));
 	freq_group(x)  = fdn_group(vgroup("[1] Band Crossover Frequencies", x));
 	t60_group(x)  = fdn_group(hgroup("[2] Band Decay Times (T60)", x));
 	path_group(x)  = fdn_group(vgroup("[3] Room Dimensions", x));
@@ -46,6 +47,8 @@ with{
 	nonl_group(x) = revin_group(vgroup("[4] Nonlinearity",x));
 	quench_group(x) = revin_group(vgroup("[3] Reverb State",x));
 
+	theta = theta_group(hslider("[1] Rotation of early reflections (radians)",
+											ma.PI/6,0,2*ma.PI,.001));
 	nonl = nonl_group(hslider("[style:knob] [tooltip: nonlinear mode coupling]",
 	    0, -0.999, 0.999, 0.001));
 	loopgainmax = 1.0-0.5*quench_group(button("[1] Quench
