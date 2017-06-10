@@ -164,19 +164,19 @@ with{
                               0,1,0,-1*sin(theta),0,cos(theta)));
     secondOrdCoeffs(m,theta)=ba.take(m+1,
       (cos(2*theta),0,0,0,sin(2*theta),
-      0,cos(theta),0,sin(theta),0,
+      0,cos(theta),0,-1*sin(theta),0,
       0,0,1,0,0,
-      0,-1*sin(theta),0,cos(theta),0,
+      0,sin(theta),0,cos(theta),0,
       -1*sin(2*theta),0,0,0,cos(2*theta)
     ));
     thirdOrdCoeffs(l,theta)=ba.take(l+1,
-      (cos(3*theta),0,0,0,0,0,sin(3*theta),
+      (cos(3*theta),0,0,0,0,0,-1*sin(3*theta),
       0,cos(2*theta),0,0,0,sin(2*theta),0,
       0,0,cos(theta),0,sin(theta),0,0,
       0,0,0,1,0,0,0,
-      0,0,-1*sin(theta),0,cos(theta),0,0,
-      0,-1*sin(2*theta),0,0,0,cos(2*theta),0,
-      -1*sin(3*theta),0,0,0,0,0,cos(3*theta)
+      0,0,sin(theta),0,cos(theta),0,0,
+      0,sin(2*theta),0,0,0,cos(2*theta),0,
+      sin(3*theta),0,0,0,0,0,cos(3*theta)
     ));
     passSecond(A) = par(i,5,select2(A>4,_,0));
     passThird(A) = par(i,7,select2(A>9,_,0));
