@@ -1,10 +1,10 @@
 declare name "afdnRev";
 declare version "0.0";
-declare author "JOS, Revised by RM";
-declare description "A feedback delay network reverb.";
+declare author "Nick Gang & Wisam Reid";
+declare description "A feedback delay network reverb for ambisonics";
 
 import("stdfaust.lib");
-import("afdnRev.dsp");
+import("AFDN.lib");
 
 //-------------------------`afdnrev0_demo`---------------------------
 // A reverb application using `afdnrev0`.
@@ -17,23 +17,26 @@ import("afdnRev.dsp");
 //
 // Where:
 //
-// * `n`: Feedback Delay Network (FDN) order / number of delay lines used =
+// * `N`: Feedback Delay Network (FDN) order / number of delay lines used =
 //	order of feedback matrix / 2, 4, 8, or 16 [extend primes array below for
 //	32, 64, ...]
-// * `nb`: Number of frequency bands / Number of (nearly) independent T60 controls
+// * `M`: Number of delays for early reflections, should have M<=N
+// * `NB`: Number of frequency bands / Number of (nearly) independent T60 controls
 //	/ Integer 3 or greater
-// * `bbso` = Butterworth band-split order / order of lowpass/highpass bandsplit
-//	used at each crossover freq / odd positive integer
 //------------------------------------------------------------
-afdnrev0_demo(N,NB,BBSO) = afdnrev0(MAXDELAY,delays,BBSO,freqs,durs,loopgainmax,nonl)
-	  :> *(gain)
+afdnrev0_demo(O,N,M,NB) = par(i,A,
+				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
+		: hoaRotate(O,ma.PI/2) :
+		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
+	  (si.bus(A-1))
 with{
+	A = (O+1)^2; // Number of Ambisonics channels
 	MAXDELAY = 8192; // sync w delays and prime_power_delays above
 	defdurs = (8.4,6.5,5.0,3.8,2.7); // NB default durations (sec)
 	deffreqs = (500,1000,2000,4000); // NB-1 default crossover frequencies (Hz)
-	deflens = (56.3,63.0); // 2 default min and max path lengths
+	deflens = (56.3,63.0); // 2 default min and max path lengths (same for early and late for now)
 
-	fdn_group(x)  = vgroup("LATE FIELD FDN, ORDER 16
+	fdn_group(x)  = vgroup("Ambisonics FDN, ORDER 16
 	[tooltip: See Faust's reverbs.lib for documentation and references]", x);
 
 	freq_group(x)  = fdn_group(vgroup("[1] Band Crossover Frequencies", x));
@@ -70,6 +73,7 @@ with{
 	freqs = par(i,NB-1,freqvals(i));
 
 	delays = de.prime_power_delays(N,pathmin,pathmax);
+	delEarly = de.prime_power_delays(M,pathmin,pathmax); // Early delay times
 
 	gain = hslider("[3] Output Level (dB) [unit:dB][tooltip: Output scale factor]",
 		-40, -70, 20, 0.1) : ba.db2linear;
@@ -77,4 +81,4 @@ with{
 };
 
 
-process = afdnrev0_demo(16,5,3);
+process = afdnrev0_demo(3,16,8,5);
