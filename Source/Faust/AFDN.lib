@@ -131,8 +131,7 @@ with {
         // ~ 1.0 - 6.91*delayval(i)/(SR*dur(j)); // valid for large dur(j)
   };
 };
-
-//--------------------------------`afdnRotate`---------------------------------
+//--------------------------------`hoaRotate`---------------------------------
 // Rotation of early reflections for Ambisonics FDN reverb
 // For now, built using rotate method from HOA lib
 // TODO: Replace hoa.lib function with one that supports ACN ordering
@@ -147,34 +146,53 @@ with {
 //
 // Where:
 //
-// * `O`: 0, 1, 2, ...  (Ambisonics Order)
-// * `angle`: rotation angle (0 to 2pi, radians)
+// * `O`: 0, 1, 2, 3  (Ambisonics Order)
+// * `angle`: rotation angle (radians)
 //
 // #### Reference
 //
 // <https://github.com/nickgang/AFDN-reverb>
-//------------------------------------------------------------
-afdnRotate(O,angle) = si.bus(A) <: si.bus(2*A) : rot(angle),rot(-angle) :> si.bus(A)
-with {
-  A = (O+1)^2; // Get order from number of channels
-  rot(A) = par(i,O+1,si.bus((2*i)+1):ho.rotate(i,angle)); // This will be clockwise rotation
-};
-
-//--------------------------------`hoaRotate`---------------------------------
-// Placeholder name for afdnRotate function while we replace the hoa.lib function
-// with our own
 hoaRotate(O,theta) = si.bus(A) <: si.bus(2*A) : rot(theta),rot(-theta) :> si.bus(A)
 with{
   A = (O+1)^2; // Get order from number of channels
-  rot(theta) = si.bus(A)<:(*1,rotateFirst(theta),
-                rotateOrder(O,theta))); // Three rotations in parallel
-}
+  // Three rotations in parallel
+  rot(theta) = si.bus(A)<:_,rotateFirst(theta),
+                      (passSecond(A):rotateSecond(theta)),
+                      (passThird(A):rotateThird(theta))
+  with{
+    firstOrdCoeffs(n,theta)=ba.take(n+1,(cos(theta),0,sin(theta),
+                              0,1,0,-1*sin(theta),0,cos(theta)));
+    secondOrdCoeffs(m,theta)=ba.take(m+1,
+      (cos(2*theta),0,0,0,sin(2*theta),
+      0,cos(theta),0,sin(theta),0,
+      0,0,1,0,0,
+      0,-1*sin(theta),0,cos(theta),0,
+      -1*sin(2*theta),0,0,0,cos(2*theta)
+    ));
+    thirdOrdCoeffs(l,theta)=ba.take(l+1,
+      (cos(3*theta),0,0,0,0,0,sin(3*theta),
+      0,cos(2*theta),0,0,0,sin(2*theta),0,
+      0,0,cos(theta),0,sin(theta),0,0,
+      0,0,0,1,0,0,0,
+      0,0,-1*sin(theta),0,cos(theta),0,0,
+      0,-1*sin(2*theta),0,0,0,cos(2*theta),0,
+      -1*sin(3*theta),0,0,0,0,0,cos(3*theta)
+    ));
+    passSecond(A) = par(i,5,select2(A>4,_,0));
+    passThird(A) = par(i,7,select2(A>9,_,0));
+    rotateFirst(theta) = si.bus(3)<:(par(i,3,_*firstOrdCoeffs(i,theta)):>_),
+       (par(i,3,_*firstOrdCoeffs(i+3,theta)):>_),(par(i,3,_*firstOrdCoeffs(i+6,theta)):>_);
 
-//--------------------------------`rotateFirst`---------------------------------
-// First order rotation matrix, for X,Y,Z directions
-rotateFirst(theta) = si.bus(3)<:par(i,3,applyRotate(theta))
-with {
-  applyRotate(theta) = si.bus(3)<:(_*cos(theta),_*0,_*-sin(theta):>_),
-                                  (_*0,_,_*0:>_),
-                                  (_*sin(theta),_*0:>_)
-}
+    //par(i,5,*(A>4))
+    rotateSecond(theta)=si.bus(5)<:
+          (par(i,5,_*secondOrdCoeffs(i,theta)):>_),(par(i,5,_*secondOrdCoeffs(i+5,theta)):>_),
+          (par(i,5,_*secondOrdCoeffs(i+10,theta)):>_),(par(i,5,_*secondOrdCoeffs(i+15,theta)):>_),
+          (par(i,5,_*secondOrdCoeffs(i+20,theta)):>_);
+    //par(i,7,*(A>9))
+    rotateThird(theta)=si.bus(7)<:
+           (par(i,7,_*thirdOrdCoeffs(i,theta)):>_),(par(i,7,_*thirdOrdCoeffs(i+7,theta)):>_),
+           (par(i,7,_*thirdOrdCoeffs(i+14,theta)):>_),(par(i,7,_*thirdOrdCoeffs(i+21,theta)):>_),
+           (par(i,7,_*thirdOrdCoeffs(i+28,theta)):>_),(par(i,7,_*thirdOrdCoeffs(i+35,theta)):>_),
+           (par(i,7,_*thirdOrdCoeffs(i+42,theta)):>_);
+      };
+};

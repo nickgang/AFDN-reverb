@@ -26,7 +26,7 @@ import("AFDN.lib");
 //------------------------------------------------------------
 afdnrev0_demo(O,N,M,NB) = par(i,A,
 				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
-		: afdnRotate(O,ma.PI/2) :
+		: hoaRotate(O,ma.PI/2) :
 		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
 	  (si.bus(A-1))
 with{
@@ -81,4 +81,4 @@ with{
 };
 
 
-process = afdnrev0_demo(4,16,8,5);
+process = afdnrev0_demo(3,16,8,5);
