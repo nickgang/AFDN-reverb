@@ -1,18 +1,18 @@
-declare name "afdnRev";
+declare name "afdnRev2nd";
 declare version "0.0";
 declare author "Nick Gang & Wisam Reid";
-declare description "A feedback delay network reverb for ambisonics";
+declare description "A feedback delay network reverb for 2nd order ambisonics";
 
 import("stdfaust.lib");
 import("AFDN.lib");
 
-//-------------------------`afdnrev0_demo`---------------------------
+//-------------------------`afdnrev2_demo`---------------------------
 // A reverb application using `afdnrev0`.
 //
 // #### Usage
 //
 // ```
-// _ : afdnrev0_demo(N,NB,BBSO) : _
+// _ : afdnrev1_demo(N,M,NB) : _
 // ```
 //
 // Where:
@@ -24,13 +24,13 @@ import("AFDN.lib");
 // * `NB`: Number of frequency bands / Number of (nearly) independent T60 controls
 //	/ Integer 3 or greater
 //------------------------------------------------------------
-afdnrev0_demo(O,N,M,NB) = par(i,A,
+afdnrev2_demo(N,M,NB) = par(i,A,
 				afdnEarly0(MAXDELAY,delEarly,3,freqs,durs,loopgainmax,nonl))
-		: hoaRotate(O,theta) :
+		: hoaRotate2nd(theta) :
 		( _ : afdnrev0(MAXDELAY,delays,3,freqs,durs,loopgainmax,nonl):> *(gain)) ,
 	  (si.bus(A-1))
 with{
-	A = (O+1)^2; // Number of Ambisonics channels
+	A = 9; // Number of Ambisonics channels
 	MAXDELAY = 8192; // sync w delays and prime_power_delays above
 	defdurs = (8.4,6.5,5.0,3.8,2.7); // NB default durations (sec)
 	deffreqs = (500,1000,2000,4000); // NB-1 default crossover frequencies (Hz)
@@ -84,4 +84,4 @@ with{
 };
 
 
-process = afdnrev0_demo(3,16,8,5);
+process = afdnrev2_demo(16,8,5);
