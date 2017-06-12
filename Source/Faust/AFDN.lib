@@ -157,6 +157,7 @@ with{
   A = 4; // Number of channels for first order
   // One rotation (plus W pass through)
   rot(theta) = si.bus(A)<:_,rotateFirst(theta);
+};
 
 hoaRotate2nd(theta) = si.bus(A) <: si.bus(2*A) : rot(theta),rot(-theta) :> si.bus(A)
 with{

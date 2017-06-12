@@ -78,8 +78,8 @@ with{
 	delays = de.prime_power_delays(N,pathmin,pathmax);
 	delEarly = de.prime_power_delays(M,pathmin,pathmax); // Early delay times
 
-	gain = hslider("[3] Output Level (dB) [unit:dB][tooltip: Output scale factor]",
-		-40, -70, 20, 0.1) : ba.db2linear;
+	gain = hslider("[3] Wet Level (dB) [unit:dB][tooltip: Output scale factor]",
+		-20, -70, 20, 0.1) : ba.db2linear;
 	// (can cause infinite loop:) with { db2linear(x) = pow(10, x/20.0); };
 };
 
