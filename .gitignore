@@ -1,3 +1,8 @@
+# VST SDK files
+Source/vst_sdk/*/*/*.h
+Source/vst_sdk/*/*/*/*.cpp
+Source/vst_sdk/*/*/*/*.h
+
 # Compiled Object files
 *.slo
 *.lo
